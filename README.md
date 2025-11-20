@@ -1,6 +1,4 @@
-# istad.tech-branch
-
-----------------------------------
+#istad.tech-branch
 
 ## welcome to my tech-brary system
 
