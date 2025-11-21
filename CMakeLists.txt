@@ -21,7 +21,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(tabulate)
 
 # Build executable from source files
-add_executable(tech-brary main.cpp src/admin.cpp src/librarian.cpp src/logIn.cpp src/user.cpp)
+add_executable(tech-brary main.cpp src/admin.cpp src/librarian.cpp src/logIn.cpp src/user.cpp src/menu.cpp)
 
 # Include header directory
 target_include_directories(tech-brary PRIVATE include)
