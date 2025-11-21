@@ -1,8 +1,4 @@
-#include <iostream>
-
-#include "Label.hpp"
-
-using namespace std;
+#include "ui/Label.hpp"
 
 int main (){
     system("cls");

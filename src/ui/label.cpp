@@ -1,15 +1,10 @@
-#pragma once
-#include "Colors.hpp"
-
-#include <iostream>
-#include <string>
-#include <cstdlib>
+#include "ui/Label.hpp"
 
 void displayHeader()
 {
     system("cls");
 
-    std::cout << b_blue << R"(
+    cout << b_blue << R"(
                                         ██╗███████╗████████╗ █████╗ ██████╗ 
                                         ██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗
                                         ██║███████╗   ██║   ███████║██║  ██║

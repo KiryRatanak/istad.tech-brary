@@ -1,9 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
-
-#include "User.hpp"
-#include "Menu.hpp"
+#include "core/User.hpp"
+#include "ui/Menu.hpp"
 
 using namespace std;
 
