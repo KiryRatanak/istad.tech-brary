@@ -1,7 +1,9 @@
 #include <iostream>
+#include <string>
+#include <vector>
 
-#include "User.h++"
-#include "Menu.h++"
+#include "User.hpp"
+#include "Menu.hpp"
 
 using namespace std;
 
@@ -51,37 +53,41 @@ void User::findBook() {
     cout << "\nFind book by:\n";
     cout << "1. Author\n2. Title\n3. Year\nChoose: ";
     cin >> option;
+    cin.ignore();
 
     if (option == 1) findByAuthor();
     else if (option == 2) findByTitle();
     else if (option == 3) findByYear();
     else cout << "Invalid option!\n";
 }
-
 void User::findByAuthor() {
     string author;
     cout << "Enter author: ";
-    cin.ignore();
     getline(cin, author);
 
+    bool found = false;
     for (auto &b : *books) {
         if (b.author == author) {
             cout << b.id << " | " << b.title << " | " << b.year << endl;
+            found = true;
         }
     }
+    if (!found) cout << "No books found by this author!\n";
 }
 
 void User::findByTitle() {
     string title;
     cout << "Enter title: ";
-    cin.ignore();
     getline(cin, title);
 
+    bool found = false;
     for (auto &b : *books) {
         if (b.title == title) {
             cout << b.id << " | " << b.author << " | " << b.year << endl;
+            found = true;
         }
     }
+    if (!found) cout << "No books found with this title!\n";
 }
 
 void User::findByYear() {
@@ -89,11 +95,14 @@ void User::findByYear() {
     cout << "Enter year: ";
     cin >> year;
 
+    bool found = false;
     for (auto &b : *books) {
         if (b.year == year) {
             cout << b.id << " | " << b.title << " | " << b.author << endl;
+            found = true;
         }
     }
+    if (!found) cout << "No books found from this year!\n";
 }
 
 void User::borrowBook() {
@@ -129,7 +138,7 @@ void User::deleteBook() {
     cout << "Enter book ID to delete from your borrowed list: ";
     cin >> id;
 
-    for (int i = 0; i < borrowHistory.size(); i++) {
+    for (size_t i = 0; i < borrowHistory.size(); i++) {
         if (borrowHistory[i].bookId == id) {
 
             for (auto& b : *books) {

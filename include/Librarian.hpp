@@ -25,6 +25,3 @@ public:
     void deleteBook(int id);
     int amount();
 };
-
-void displayMenu();
-void showWelcomeMessage();

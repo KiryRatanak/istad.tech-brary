@@ -1,7 +1,7 @@
 #pragma once
 #include<iostream>
 
-#include "Colors.h++"
+#include "Colors.hpp"
 
 using namespace std;
  

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Label.h++"
+#include "Label.hpp"
 
 using namespace std;
 

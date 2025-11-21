@@ -1,15 +1,15 @@
 #pragma once
-#include "Colors.h++"
+#include "Colors.hpp"
 
 #include <iostream>
-
-using namespace std;
+#include <string>
+#include <cstdlib>
 
 void displayHeader()
 {
     system("cls");
 
-    cout << b_blue << R"(
+    std::cout << b_blue << R"(
                                         ██╗███████╗████████╗ █████╗ ██████╗ 
                                         ██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗
                                         ██║███████╗   ██║   ███████║██║  ██║
