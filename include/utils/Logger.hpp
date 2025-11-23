@@ -5,10 +5,12 @@
 
 using namespace std;
 
+int msgReturnBack();
+void msgPressEnter();
 void msgExitProgram();
 void msgTryAgain();
 void msgSuccess();
 void msgUnsuccess();
-void msgPressEnter();
-void msgWrongPutHeader();
+void msgWrongOptionHeader();
+void msgWrongOptionLogIn();
 void msgWithoutNumber();

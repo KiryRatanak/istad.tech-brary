@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-#include "core/SwitchCase.hpp"
+#include "core/LogIn.hpp"
 #include "ui/labelMenu.hpp"
 
 int option;
@@ -10,7 +10,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 
-    headerSwitch();
+    header();
 
     return 0;
 }

@@ -8,7 +8,10 @@
 
 using namespace std;
 
-void displayHeader();
+void displayHeaderMenu();
+void displayLogInMenu();
 void displayLibrarianMenu();
 void displayUserMenu();
 void displayAdminMenu();
+void displayRequestAccount();
+void displayAboutUs();
