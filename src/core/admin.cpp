@@ -1,5 +1,5 @@
 #include "core/Admin.hpp"
-#include "ui/Menu.hpp"
+#include "ui/LabelMenu.hpp"
 
 using namespace std;
 

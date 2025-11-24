@@ -1,13 +1,16 @@
 #include <Windows.h>
 
-#include "ui/Label.hpp"
+#include "core/LogIn.hpp"
+#include "ui/labelMenu.hpp"
 
-int main (){
+int option;
+
+int main() {
     system("cls");
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 
-    displayHeader();
-    
+    header();
+
     return 0;
 }
