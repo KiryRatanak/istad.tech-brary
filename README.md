@@ -1,6 +1,6 @@
 # istad.coda-atlas
 
-## welcome to my tech-brary system
+## welcome to my coda-atlas system
 
 ### how to use our system.....
 
