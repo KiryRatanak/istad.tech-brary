@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(TechBrary)
+project(CodaAtlas)
 set(CMAKE_CXX_STANDARD 17)
 
 include(FetchContent)
@@ -20,20 +20,23 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(tabulate)
 
-# All .cpp files
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+# Automatically collect all .cpp files in src/ and data/
+file(GLOB_RECURSE SOURCES
+    "${CMAKE_SOURCE_DIR}/src/*.cpp"
+    "${CMAKE_SOURCE_DIR}/data/*.cpp"
+)
 
 # Create executable
-add_executable(TechBrary main.cpp ${SOURCES})
+add_executable(CodaAtlas main.cpp ${SOURCES})
 
 # Include header folder
-target_include_directories(TechBrary PUBLIC include)
+target_include_directories(CodaAtlas PUBLIC include)
 
 # Link libraries
-target_link_libraries(TechBrary PRIVATE xlnt tabulate)
+target_link_libraries(CodaAtlas PRIVATE xlnt tabulate)
 
 # Copy xlnt.dll after build (Windows)
-add_custom_command(TARGET TechBrary POST_BUILD
+add_custom_command(TARGET CodaAtlas POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_SOURCE_DIR}/build/_deps/xlnt-build/source/Release/xlnt.dll"
-    $<TARGET_FILE_DIR:TechBrary>)
+    $<TARGET_FILE_DIR:CodaAtlas>)
