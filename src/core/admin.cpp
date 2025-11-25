@@ -1,75 +1,92 @@
 #include "core/Admin.hpp"
 #include "ui/LabelMenu.hpp"
+#include "security/AdminPwd.hpp"
+#include "utils/Logger.hpp"
+#include "validation/Validation.hpp"
+#include "security/HidePwd.hpp"
 
 using namespace std;
-
-bool checkAdmin(const string& username, const string& password) {
-    const string adminUsername = "admin";
-    const string adminPassword = "admin123";
-
-    return (username == adminUsername && password == adminPassword);
+void checkLibrary()
+{
+    cout << "checkLibrary successfully" << endl;
 }
 
-void checkLibrary() {
-    cout<<"Function runs successfully!"<<endl;
+void manageLibrarian()
+{
+    cout << "manageLibrarian successfully" << endl;
 }
 
-void manageLibrarian() {
-    cout<<"Function runs successfully!"<<endl;
+void amount()
+{
+    cout << "amount successfully" << endl;
 }
 
-void amount() {
-    cout<<"Function runs successfully!"<<endl;
-}
-
-void adminMenu() {
-    int choice;
-
-    do {
-
-        displayAdminMenu();
-        
-        cin >> choice;
-
-        switch (choice) {
-            case 1:
-                checkLibrary();
-                break;
-            case 2:
-                manageLibrarian();
-                break;
-            case 3:
-                amount();
-                break;
-            case 0:
-                cout << "Exiting menu...\n";
-                break;
-            default:
-                cout << "Invalid option. Try again.\n";
-        }
-
-    } while (choice != 0);
-}
-
-void loginAs() {
+void adminMenu()
+{
+    // int option;
     string username, password;
     int attempts = 3;
 
-    while (attempts > 0) {
-        cout << "Enter username: ";
-        cin >> username;
-        cout << "Enter password: ";
-        cin >> password;
+    while (attempts > 0)
+    {
+        displayAdminLogIn();
 
-        if (checkAdmin(username, password)) {
-            cout << "Login successful. Welcome, Admin!" << endl;
-            adminMenu();
-            return;
-        } else {
+        cout << "\033[7A";
+        cout << "\033[22C";
+        cin >> username;
+
+        cout << "\033[3B";
+        cout << "\033[22C";
+        password = getPassword();
+
+        if (checkAdmin(username, password))
+        {
+            cout << endl << endl << endl;
+            msgSuccessInLogIn();
+            msgPressEnterInLogIn();
+            cout << endl ;
+            msgReturnBackInLogIn();
+            // do
+            // {
+            //     displayAdminMenu();
+
+            //     cin >> option;
+
+            //     option = validatedAdminLogIn();
+
+            //     switch (option)
+            //     {
+            //     case 1:
+            //         checkLibrary();
+            //         break;
+
+            //     case 2:
+            //         manageLibrarian();
+            //         break;
+
+            //     case 3:
+            //         amount();
+            //         break;
+            //     }
+
+            // } while (option != 0);
+        }
+        else
+        {
             attempts--;
-            cout << "Invalid credentials. Attempts left: " << attempts << endl;
+            cout << endl
+                 << endl
+                 << endl
+                 << b_red
+                 << "Invalid credentials. Attempts left: " << attempts << reset << endl;
+            if (attempts == 0)
+            {
+                cout << endl
+                     << b_red << "Too many failed attempts. You are not Admin 🫵. " << reset << endl;
+                msgPressEnterInLogIn();
+                continue;
+            }
+            msgPressEnterInLogIn();
         }
     }
-
-    cout << "Too many failed attempts. Access denied." << endl;
 }

@@ -2,6 +2,9 @@
 #include "validation/Validation.hpp"
 #include "ui/LabelMenu.hpp"
 #include "utils/Logger.hpp"
+#include "core/Admin.hpp"
+#include "core/Librarian.hpp"
+#include "core/User.hpp"
 
 void header()
 {
@@ -10,12 +13,6 @@ void header()
     do
     {
         option = validatedHeader();
-
-        if (option == 0)
-        {
-            msgExitProgram();
-            return;
-        }
 
         switch (option)
         {
@@ -47,15 +44,13 @@ void logInMenu()
 {
     int option;
 
+    User user;
+
+    Librarian librarian;
+
     do
     {
         option = validatedLogIn();
-
-        if (option == 0)
-        {
-            msgExitProgram();
-            return;
-        }
 
         if (option == 4)
         {
@@ -66,21 +61,15 @@ void logInMenu()
         switch (option)
         {
         case 1:
-            cout << "admin\n";
-            msgUnsuccess();
-            msgPressEnter();
+            adminMenu();
             break;
 
         case 2:
-            cout << "librarian\n";
-            msgUnsuccess();
-            msgPressEnter();
+            librarian.librarianMenu();
             break;
 
         case 3:
-            cout << "user\n";
-            msgUnsuccess();
-            msgPressEnter();
+            user.userMenu();
             break;
         }
 

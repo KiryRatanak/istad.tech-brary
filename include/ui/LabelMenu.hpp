@@ -10,6 +10,9 @@ using namespace std;
 
 void displayHeaderMenu();
 void displayLogInMenu();
+void displayAdminLogIn();
+void displayLibrarianLogIn();
+void displayUserLogIn();
 void displayLibrarianMenu();
 void displayUserMenu();
 void displayAdminMenu();

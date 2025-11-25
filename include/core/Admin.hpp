@@ -3,9 +3,7 @@
 #include <string>
 using namespace std;
 
-bool checkAdmin(const string& username, const string& password);
+void adminMenu();
 void checkLibrary();
 void manageLibrarian();
 void amount();
-void adminMenu();
-void loginAs();
