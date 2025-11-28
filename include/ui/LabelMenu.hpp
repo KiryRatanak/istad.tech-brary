@@ -8,6 +8,7 @@
 
 using namespace std;
 
+void welcome();
 void displayHeaderMenu();
 void displayLogInMenu();
 void displayAdminLogIn();
