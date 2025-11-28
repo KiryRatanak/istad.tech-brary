@@ -6,22 +6,128 @@
 #include "security/HidePwd.hpp"
 
 using namespace std;
-void checkLibrary()
-{
+Admin::Admin() {
+    // Constructor implementation (if needed)
+}
+
+void Admin::checkLibrary() {
     cout << "checkLibrary successfully" << endl;
 }
 
-void manageLibrarian()
-{
-    cout << "manageLibrarian successfully" << endl;
+
+
+void Admin::createLibrarian() {
+    LibrarianManagement lib;
+
+    cout << "Enter username: ";
+    cin >> lib.username;
+
+    cout << "Enter gender: ";
+    cin >> lib.gender;
+
+    cout << "Enter phone number: ";
+    cin >> lib.phone;
+
+    cout << "Enter password: ";
+    cin >> lib.password;
+
+    cout << "Enter city: ";
+    cin >> lib.address;
+
+    librarians.push_back(lib);
+
+    cout << "\nLibrarian created successfully!\n";
 }
 
-void amount()
-{
+void Admin::updateLibrarian() {
+    string username;
+    cout << "Enter username to update: ";
+    cin >> username;
+
+    for (auto &lib : librarians) {
+        if (lib.username == username) {
+            cout << "New gender: ";
+            cin >> lib.gender;
+
+            cout << "New phone: ";
+            cin >> lib.phone;
+
+            cout << "New password: ";
+            cin >> lib.password;
+
+            cout << "New city: ";
+            cin >> lib.address;
+
+            cout << "Updated successfully!\n";
+            return;
+        }
+    }
+    cout << "Librarian not found!\n";
+}
+
+void Admin::deleteLibrarian() {
+    string username;
+    cout << "Enter username to delete: ";
+    cin >> username;
+
+    for (size_t i = 0; i < librarians.size(); i++) {
+        if (librarians[i].username == username) {
+            librarians.erase(librarians.begin() + i);
+            cout << "Deleted successfully!\n";
+            return;
+        }
+    }
+    cout << "Librarian not found!\n";
+}
+
+void Admin::showLibrarians() {
+    if (librarians.empty()) {
+        cout << "No librarians found.\n";
+        return;
+    }
+
+    cout << "\n===== Librarians =====\n";
+    for (const auto &lib : librarians) {
+        cout << "Username: " << lib.username << "\n";
+        cout << "Gender: " << lib.gender << "\n";
+        cout << "Phone: " << lib.phone << "\n";
+        cout << "City: " << lib.address << "\n";
+        cout << "------------------------\n";
+    }
+}
+
+void Admin::manageLibrarian() {
+    int option;
+
+    do {
+        cout << "\n===== Manage Librarians =====\n";
+        cout << "1. Create Librarian\n";
+        cout << "2. Update Librarian\n";
+        cout << "3. Delete Librarian\n";
+        cout << "4. Show Librarians\n";
+        cout << "0. Return\n";
+        cout << "Select option: ";
+        cin >> option;
+
+        switch (option) {
+            case 1: createLibrarian(); break;
+            case 2: updateLibrarian(); break;
+            case 3: deleteLibrarian(); break;
+            case 4: showLibrarians(); break;
+            case 0: break;
+            default: cout << "Invalid option!\n";
+        }
+
+    } while (option != 0);
+}
+
+
+
+void Admin::amount() {
     cout << "amount successfully" << endl;
 }
 
-void adminMenu()
+void Admin::adminMenu()
 {
     // int option;
     string username, password;
