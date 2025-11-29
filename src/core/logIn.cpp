@@ -48,6 +48,8 @@ void logInMenu()
 
     Librarian librarian;
 
+    Admin admin;
+
     do
     {
         option = validatedLogIn();
@@ -61,7 +63,7 @@ void logInMenu()
         switch (option)
         {
         case 1:
-            adminMenu();
+            admin.adminMenu();
             break;
 
         case 2:
