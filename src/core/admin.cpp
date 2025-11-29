@@ -14,8 +14,6 @@ void Admin::checkLibrary() {
     cout << "checkLibrary successfully" << endl;
 }
 
-
-
 void Admin::createLibrarian() {
     LibrarianManagement lib;
 
@@ -120,8 +118,6 @@ void Admin::manageLibrarian() {
 
     } while (option != 0);
 }
-
-
 
 void Admin::amount() {
     cout << "amount successfully" << endl;
