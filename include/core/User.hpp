@@ -2,26 +2,24 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "book/Book.hpp"
+using namespace std;
 
 class User {
 private:
-    // std::vector<Book>* books;
-    // std::vector<History> borrowHistory;
+    vector<Book>* books;
 
 public:
-    // User(std::vector<Book>* libraryBooks);
+    User(vector<Book>* libraryBooks);
 
+    void listAllBooks();
+    void findBook();
+    void findByAuthor();
+    void findByTitle();
+    void findByYear();
+    void borrowBook();
+    void User::addToBorrowHistory(const string& title);
     void userMenu();
-    // void listAllBooks();
-    // void findBook();
-    // void findByAuthor();
-    // void findByTitle();
-    // void findByYear();
-
-    // void borrowBook();
-    // void viewBorrowHistory();
-    // void deleteBook();    
-    // delete from library list
-
-    // void exitMenu();
+    void viewBorrowHistory();     // new
+    void deleteBook();  
 };

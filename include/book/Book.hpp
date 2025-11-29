@@ -1,18 +1,14 @@
 #pragma once 
-
-#include <iostream>
 #include <string>
-#include <vector>
-
 using namespace std;
 
-struct Book {
+class Book {
+public:
     string title;
     string author;
     int year;
     string country;
+    bool borrowed = false;  // track if the book is borrowed
 };
 
-struct History {
-    string title;
-};
+

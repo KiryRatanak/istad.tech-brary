@@ -5,158 +5,182 @@
 #include "validation/Validation.hpp"
 #include "utils/Logger.hpp"
 #include "core/Librarian.hpp"
+#include "book/Book.hpp"
 
 using namespace std;
 
-// User::User(vector<Book>* libraryBooks) {
-//     this->books = libraryBooks;
-// }
+User::User(vector<Book>* libraryBooks) {
+    this->books = libraryBooks;
+}
 
-// void User::userMenu() {
-//     int option;
-//     do {
-//         displayUserMenu();
-//         cin >> option;
+void User::listAllBooks() {
+    cout << "\n=====[ ALL BOOKS ]=====\n";
+    for (auto &b : *books) {
+        cout << b.title << " | " << b.author << " | " << b.year 
+             << " | " << b.country 
+             << (b.borrowed ? " | Borrowed\n" : " | Available\n");
+    }
+}
 
-//         switch (option) {
-//         case 1: listAllBooks(); break;
-//         case 2: findBook(); break;
-//         case 3: borrowBook(); break;
-//         case 4: viewBorrowHistory(); break;
-//         case 5: deleteBook(); break;
-//         case 0: exitMenu(); break;
-//         default: cout << "Invalid option!\n";
-//         }
-//     } while (option != 0);
-// }
+void User::findBook() {
+    int option;
+    cout << "\nFind book by:\n1. Author\n2. Title\n3. Year\nChoose: ";
+    cin >> option;
+    cin.ignore();
 
-// void User::listAllBooks() {
-//     cout << "\n=====[ ALL BOOKS ]=====\n";
-//     for (auto &b : *books) {
-//         cout << b.id << " | " << b.title << " | " << b.author 
-//              << " | " << b.year 
-//              << (b.isBorrowed ? " | Borrowed\n" : " | Available\n");
-//     }
-// }
+    if (option == 1) findByAuthor();
+    else if (option == 2) findByTitle();
+    else if (option == 3) findByYear();
+    else cout << "Invalid option!\n";
+}
 
-// void User::findBook() {
-//     int option;
-//     cout << "\nFind book by:\n";
-//     cout << "1. Author\n2. Title\n3. Year\nChoose: ";
-//     cin >> option;
-//     cin.ignore();
+void User::findByAuthor() {
+    string author;
+    cout << "Enter author: ";
+    getline(cin, author);
 
-//     if (option == 1) findByAuthor();
-//     else if (option == 2) findByTitle();
-//     else if (option == 3) findByYear();
-//     else cout << "Invalid option!\n";
-// }
+    bool found = false;
+    for (auto &b : *books) {
+        if (b.author == author) {
+            cout << b.title << " | " << b.author << " | " << b.year << " | " << b.country << endl;
+            found = true;
+        }
+    }
+    if (!found) cout << "No books found by this author!\n";
+}
 
-// void User::findByAuthor() {
-//     string author;
-//     cout << "Enter author: ";
-//     getline(cin, author);
+void User::findByTitle() {
+    string title;
+    cout << "Enter title: ";
+    getline(cin, title);
 
-//     bool found = false;
-//     for (auto &b : *books) {
-//         if (b.author == author) {
-//             cout << b.id << " | " << b.title << " | " << b.year << endl;
-//             found = true;
-//         }
-//     }
-//     if (!found) cout << "No books found by this author!\n";
-// }
+    bool found = false;
+    for (auto &b : *books) {
+        if (b.title == title) {
+            cout << b.title << " | " << b.author << " | " << b.year << " | " << b.country << endl;
+            found = true;
+        }
+    }
+    if (!found) cout << "No books found with this title!\n";
+}
 
-// void User::findByTitle() {
-//     string title;
-//     cout << "Enter title: ";
-//     getline(cin, title);
+void User::findByYear() {
+    int year;
+    cout << "Enter year: ";
+    cin >> year;
 
-//     bool found = false;
-//     for (auto &b : *books) {
-//         if (b.title == title) {
-//             cout << b.id << " | " << b.author << " | " << b.year << endl;
-//             found = true;
-//         }
-//     }
-//     if (!found) cout << "No books found with this title!\n";
-// }
+    bool found = false;
+    for (auto &b : *books) {
+        if (b.year == year) {
+            cout << b.title << " | " << b.author << " | " << b.year << " | " << b.country << endl;
+            found = true;
+        }
+    }
+    if (!found) cout << "No books found from this year!\n";
+}
 
-// void User::findByYear() {
-//     int year;
-//     cout << "Enter year: ";
-//     cin >> year;
+void User::borrowBook() {
+    string title;
+    cout << "Enter book title to borrow: ";
+    cin.ignore();
+    getline(cin, title);
 
-//     bool found = false;
-//     for (auto &b : *books) {
-//         if (b.year == year) {
-//             cout << b.id << " | " << b.title << " | " << b.author << endl;
-//             found = true;
-//         }
-//     }
-//     if (!found) cout << "No books found from this year!\n";
-// }
+    for (auto &b : *books) {
+        if (b.title == title) {
+            if (!b.borrowed) {
+                b.borrowed = true;
+                cout << "Book borrowed successfully!\n";
+            } else {
+                cout << "Book is already borrowed!\n";
+            }
+            return;
+        }
+    }
+    cout << "Book not found!\n";
+}
 
-// void User::borrowBook() {
-//     int id;
-//     cout << "Enter book ID to borrow: ";
-//     cin >> id;
+void User::addToBorrowHistory(const string& title)
+{
+    // Add the book title to the borrow history vector
+    borrowHistory.push_back(title);
 
-//     for (auto &b : *books) {
-//         if (b.id == id) {
-//             if (!b.isBorrowed) {
-//                 b.isBorrowed = true;
+    // Optional: print a message
+    cout << "\"" << title << "\" has been added to your borrow history.\n";
+}
 
-//                 borrowHistory.push_back({ b.id, b.title });
-//                 cout << "Book borrowed successfully!\n";
-//             } else {
-//                 cout << "Book is already borrowed!\n";
-//             }
-//             return;
-//         }
-//     }
-//     cout << "Book not found!\n";
-// }
+void User::deleteBook()
+{
+    string title;
+    cout << "Enter book title to return/delete: ";
+    cin.ignore();
+    getline(cin, title);
 
-// void User::viewBorrowHistory() {
-//     cout << "\n=== BORROW HISTORY ===\n";
-//     for (auto &h : borrowHistory) {
-//         cout << h.bookId << " | " << h.title << endl;
-//     }
-// }
+    // Check if book is in borrowHistory
+    auto it = find(borrowHistory.begin(), borrowHistory.end(), title);
+    if (it != borrowHistory.end()) {
+        // Mark the book as not borrowed
+        for (auto &b : *books) {
+            if (b.title == title) {
+                b.borrowed = false;
+                break;
+            }
+        }
 
-// void User::deleteBook() {
-//     int id;
-//     cout << "Enter book ID to delete from your borrowed list: ";
-//     cin >> id;
+        // Remove from history
+        borrowHistory.erase(it);
 
-//     for (size_t i = 0; i < borrowHistory.size(); i++) {
-//         if (borrowHistory[i].bookId == id) {
+        cout << "Book returned and removed from your borrow list.\n";
+    }
+    else {
+        cout << "This book is not in your borrowed list!\n";
+    }
+}
 
-//             for (auto& b : *books) {
-//                 if (b.id == id) {
-//                     b.isBorrowed = false;
-//                     break;
-//                 }
-//             }
 
-//             borrowHistory.erase(borrowHistory.begin() + i);
+void User::viewBorrowHistory()
+{
+    if (borrowHistory.empty()) {
+        cout << "No borrowed books yet.\n";
+        return;
+    }
 
-//             cout << "Book removed from your borrow list.\n";
-//             return;
-//         }
-//     }
+    cout << "\n=== Borrowed Books ===\n";
+    for (size_t i = 0; i < borrowHistory.size(); i++) {
+        cout << i + 1 << ". " << borrowHistory[i] << endl;
+    }
+}
 
-//     cout << "This book is not in your borrow list!\n";
-// }
 
-// void User::exitMenu() {
-//     cout << "Exiting user menu...\n";
-// }
+void User::borrowBook()
+{
+    string title;
+    cout << "Enter book title to borrow: ";
+    cin.ignore();
+    getline(cin, title);
+
+    for (auto &b : *books)
+    {
+        if (b.title == title)
+        {
+            if (!b.borrowed)
+            {
+                b.borrowed = true;
+                borrowHistory.push_back(title);  // add to history
+                cout << "Book borrowed successfully!\n";
+            }
+            else
+            {
+                cout << "Book is already borrowed!\n";
+            }
+            return;
+        }
+    }
+    cout << "Book not found!\n";
+}
 
 void User::userMenu()
 {
-    // int option;
+    int option;
     string username, password;
     int attempts = 3;
 
@@ -174,43 +198,46 @@ void User::userMenu()
 
         if (checkUser(username, password))
         {
-            cout << endl << endl << endl ;
-            msgSuccessInLogIn();
-            msgPressEnterInLogIn();
-            cout << endl ;
-            msgReturnBackInLogIn();
-            // do
-            // {
-            //     displayLibrarianMenu();
+            do
+            {
+                displayUserMenu();
 
-            //     cin >> option;
+                cin >> option;
 
-            //     option = validatedAdminLogIn();
+                option = validatedAdminLogIn();
 
-            //     switch (option)
-            //     {
-            //     case 1:
-            //         break;
+                switch (option)
+                {
+                case 1:
+                    listAllBooks();
+                    break;
 
-            //     case 2:
-            //         break;
+                case 2:
+                    findBook();
+                    break;
 
-            //     case 3:
-            //         break;
-            //     case 4:
-            //         break;
+                case 3:
+                    borrowBook();
+                    break;
 
-            //     case 5:
-            //         break;
+                case 4:
+                    deleteBook();
+                    break;
 
-            //     case 6:
-            //         break;
+                case 5:
+                    viewBorrowHistory();
+                    break;
 
-            //     case 7:
-            //         break;
-            //     }
+                case 6:
+                    msgReturnBack();
+                    break;
 
-            // } while (option != 0);
+                case 0:
+                    msgExitProgramInLogIn();
+                    break;
+                }    
+
+            } while (option != 0);
         }
         else
         {
@@ -231,4 +258,3 @@ void User::userMenu()
         }
     }
 }
-
