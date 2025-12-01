@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <iomanip>
 
 #include "Colors.hpp"
 
@@ -19,3 +20,4 @@ void displayUserMenu();
 void displayAdminMenu();
 void displayRequestAccount();
 void displayAboutUs();
+void displayListBooks();

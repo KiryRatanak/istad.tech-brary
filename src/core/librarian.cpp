@@ -1,13 +1,24 @@
-#include "iomanip"
-
 #include "core/librarian.hpp"
 #include "ui/LabelMenu.hpp"
 #include "security/HidePwd.hpp"
-#include "security/LibrarianPwd.hpp"
 #include "validation/Validation.hpp"
 #include "utils/Logger.hpp"
 #include "core/Librarian.hpp"
 #include "book/Book.hpp"
+#include "security/Password.hpp"
+
+
+    // string filename = "../../studentdata.xlsx";
+    // vector<Student> students = readExcelToVector(filename);
+
+    // vector<string> mainMenu = {
+    //     "Add New Records",
+    //     "Delete the Record",
+    //     "Update the record",
+    //     "Show all records",
+    //     "Exit"
+    // };
+
 
 using namespace std;
 
@@ -33,32 +44,11 @@ void Librarian::listBooks()
 {
     system("cls");
 
-    cout << b_blue << " ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl;
-    cout << b_blue << R"( ║                                    )" << b_green << R"(   __   _     __     ___            __       )" << b_blue << R"(                                     ║)" << endl;
-    cout << b_blue << R"( ║                                    )" << b_green << R"(  / /  (_)__ / /_   / _ )___  ___  / /__ ___ )" << b_blue << R"(                                     ║)" << endl;
-    cout << b_blue << R"( ║                                    )" << b_green << R"( / /__/ (_-</ __/  / _  / _ \/ _ \/  '_/(_-< )" << b_blue << R"(                                     ║)" << endl;
-    cout << b_blue << R"( ║                                    )" << b_green << R"(/____/_/___/\__/  /____/\___/\___/_/\_\/___/ )" << b_blue << R"(                                     ║)" << endl;
-
-    cout << b_blue << R"( ║                                                                                                                      ║)" << endl;
-    cout << b_blue << " ╠═════════╦════════════════════════════════╦════════════════════════════════╦═════════╦════════════════════════════════╣" << endl;
-
-    cout << b_blue << left << " ║ " << reset << setw(7) << "Id"
-         << b_blue << " ║ " << reset << setw(30) << "Title"
-         << b_blue << " ║ " << reset << setw(30) << "Author"
-         << b_blue << " ║ " << reset << setw(7) << "Year"
-         << b_blue << " ║ " << reset << setw(30) << "Country"
-         << b_blue << " ║ " << reset << endl;
-    cout << b_blue << " ╠═════════╬════════════════════════════════╬════════════════════════════════╬═════════╬════════════════════════════════╣" << endl;
+    displayListBooks();
 
     if (books.empty())
     {
-    cout << b_blue << " ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗" << endl; 
-    cout << b_blue << R"( ║                                    )" << b_green << R"(   __   _     __     ___            __       )" << b_blue << R"(                                     ║)" << endl;
-    cout << b_blue << R"( ║                                    )" << b_green << R"(  / /  (_)__ / /_   / _ )___  ___  / /__ ___ )" << b_blue << R"(                                     ║)" << endl;
-    cout << b_blue << R"( ║                                    )" << b_green << R"( / /__/ (_-</ __/  / _  / _ \/ _ \/  '_/(_-< )" << b_blue << R"(                                     ║)" << endl;
-    cout << b_blue << R"( ║                                    )" << b_green << R"(/____/_/___/\__/  /____/\___/\___/_/\_\/___/ )" << b_blue << R"(                                     ║)" << endl;
-    cout << b_blue << R"( ║                                                                                                                      ║)" << endl;
-    cout << b_blue << R"( ╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣)" << endl;
+        system ("cls");
         cout << b_red << "No books available.\n"
              << reset;
         msgPressEnterInLogIn();
@@ -79,14 +69,14 @@ void Librarian::listBooks()
     
 }
 
-void Librarian::searchBooks(int id)
+void Librarian::searchBooks(string title)
 {
     cout << "\n===== Search Result =====\n";
     bool found = false;
 
     for (auto &b : books)
     {
-        if (b.id == id)
+        if (b.title == title)
         {
             cout << b.title
                  << " | " << b.author
@@ -98,7 +88,8 @@ void Librarian::searchBooks(int id)
 
     if (!found)
     {
-        cout << "No matching book found.\n";
+        system("cls");
+        cout << red << "No matching book found.\n" << endl;
     }
 }
 
@@ -165,7 +156,6 @@ int Librarian::librarianMenu()
 
         if (checkLibrarian(username, password))
         {
-            Librarian lib;
             do
             {
                 displayLibrarianMenu();
@@ -183,6 +173,7 @@ int Librarian::librarianMenu()
                 case 1:
                 {
                     listBooks();
+                    msgPressEnterInLogIn();
                     break;
                 }
 
@@ -206,10 +197,10 @@ int Librarian::librarianMenu()
                 case 3:
                 {
                     system("cls");
-                    int id;
+                    string title;
                     cout << "Enter book id: ";
-                    cin >> id;
-                    lib.searchBooks(id);
+                    cin >> title;
+                    lib.searchBooks(title);
                     break;
                 }
                 case 4:

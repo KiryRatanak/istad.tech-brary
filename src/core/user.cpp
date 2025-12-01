@@ -1,7 +1,7 @@
 #include "core/User.hpp"
 #include "ui/LabelMenu.hpp"
 #include "security/HidePwd.hpp"
-#include "security/UserPwd.hpp"
+#include "security/Password.hpp"
 #include "validation/Validation.hpp"
 #include "utils/Logger.hpp"
 #include "core/Librarian.hpp"

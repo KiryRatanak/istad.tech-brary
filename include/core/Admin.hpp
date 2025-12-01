@@ -13,17 +13,16 @@ struct LibrarianManagement {
 };
 
 class Admin {
+private:
+    vector<LibrarianManagement> librarians;
 public:
-    Admin();  // Constructor
-    int adminMenu();   // Function to display admin menu
-    int manageLibrarian();  // Function to manage librarian
+    Admin();
+    int adminMenu();
+    int manageLibrarian();
     int amount();
 
 private:
-    // Storage for librarians
-    vector<LibrarianManagement> librarians;
 
-    // CRUD operations
     void createLibrarian();
     void updateLibrarian();
     void deleteLibrarian();

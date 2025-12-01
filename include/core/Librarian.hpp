@@ -11,14 +11,13 @@ using namespace std;
 
 class Librarian
 {
-
 public:
     Librarian();
 
     int getNextId();
     void importBook(const string& title, const string& author, int year, const string& country) ;
     void listBooks();
-    void searchBooks(int id);
+    void searchBooks(string title);
     void updateBook(int id);
     void deleteBook(int id);
     int amount();

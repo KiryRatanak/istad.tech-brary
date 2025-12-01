@@ -1,10 +1,10 @@
 #include "core/Admin.hpp"
 #include "ui/LabelMenu.hpp"
-#include "security/AdminPwd.hpp"
 #include "utils/Logger.hpp"
 #include "validation/Validation.hpp"
 #include "security/HidePwd.hpp"
 #include "core/Librarian.hpp"
+#include "security/Password.hpp"
 
 using namespace std;
 
@@ -83,20 +83,16 @@ void Admin::deleteLibrarian()
 
 void Admin::showLibrarians()
 {
+    cout << "\n===== Librarians =====\n";
+    for (auto &lib : librarians)
+    {
+        cout << lib.username << " | " << lib.password << endl;
+    }
+
     if (librarians.empty())
     {
         cout << "No librarians found.\n";
         return;
-    }
-
-    cout << "\n===== Librarians =====\n";
-    for (const auto &lib : librarians)
-    {
-        cout << "Username: " << lib.username << "\n";
-        cout << "Gender: " << lib.gender << "\n";
-        cout << "Phone: " << lib.phone << "\n";
-        cout << "City: " << lib.address << "\n";
-        cout << "------------------------\n";
     }
 }
 
@@ -136,6 +132,7 @@ int Admin::manageLibrarian()
             break;
         case 4:
             showLibrarians();
+            msgPressEnterInLogIn();
             break;
         case 0:
 
