@@ -11,10 +11,10 @@ using namespace std;
 
 User::User() {}
 
-User::User(vector<Book> *libraryBooks)
-{
-    this->books = libraryBooks;
-}
+// User::User(vector<Book> *libraryBooks)
+// {
+//     this->books = libraryBooks;
+// }
 
 void User::listBooksInlabrary()
 {
@@ -27,7 +27,7 @@ void User::findBook()
 {
     int option;
     cout << endl << "\n Find book by:\n";
-    cout << " 1. Author\n2. Title\n3. Year\nChoose: ";
+    cout << " 1. Author\n 2. Title\n 3. Year\nChoose: ";
     cin >> option;
     cin.ignore();
 
@@ -48,7 +48,7 @@ void User::findByAuthor()
     getline(cin, author);
 
     bool found = false;
-    for (auto &b : *books)
+    for (auto &b : books)
     {
         if (b.author == author)
         {
@@ -67,7 +67,7 @@ void User::findByTitle()
     getline(cin, title);
 
     bool found = false;
-    for (auto &b : *books)
+    for (auto &b : books)
     {
         if (b.title == title)
         {
@@ -86,7 +86,7 @@ void User::findByYear()
     cin >> year;
 
     bool found = false;
-    for (auto &b : *books)
+    for (auto &b : books)
     {
         if (b.year == year)
         {
@@ -104,7 +104,7 @@ void User::borrowBook()
     cout << "Enter book ID to borrow: ";
     cin >> id;
 
-    for (auto &b : *books)
+    for (auto &b : books)
     {
         if (b.id == id)
         {
@@ -112,7 +112,14 @@ void User::borrowBook()
             {
                 b.isBorrowed = true;
 
-                borrowHistory.push_back({b.id, b.title});
+                borrowHistory.push_back({
+                    b.id,
+                    b.title,
+                    b.author,
+                    b.year,
+                    b.country,
+                    b.isBorrowed
+                });
                 cout << "Book borrowed successfully!\n";
             }
             else
@@ -128,9 +135,21 @@ void User::borrowBook()
 void User::viewBorrowHistory()
 {
     cout << "\n=== BORROW HISTORY ===\n";
+
+    if (borrowHistory.empty()) {
+        cout << "No borrow history.\n";
+        return;
+    }
+
     for (auto &h : borrowHistory)
     {
-        cout << h.bookId << " | " << h.title << endl;
+        cout << "ID: " << h.id
+             << " | Title: " << h.title
+             << " | Author: " << h.author
+             << " | Year: " << h.year
+             << " | Country: " << h.country
+             << " | Borrowed: " << (h.isBorrowed ? "Yes" : "No")
+             << endl;
     }
 }
 
@@ -142,10 +161,10 @@ void User::deleteBook()
 
     for (size_t i = 0; i < borrowHistory.size(); i++)
     {
-        if (borrowHistory[i].bookId == id)
+        if (borrowHistory[i].id == id)
         {
 
-            for (auto &b : *books)
+            for (auto &b : books)
             {
                 if (b.id == id)
                 {
@@ -190,7 +209,7 @@ int User::userMenu()
 
                 option = validatedUserLogIn();
 
-                if (option == 4)
+                if (option == 6)
                 {
                     msgReturnBackInLogIn();
                     return -1;
@@ -204,7 +223,6 @@ int User::userMenu()
                     break;
 
                 case 2:
-                    lib.listBooks();
                     findBook();
                     msgPressEnterInLogIn();
                     break;
@@ -221,7 +239,7 @@ int User::userMenu()
                     break;
 
                 case 5:
-                    lib.listBooks();
+                    viewBorrowHistory();
                     deleteBook();
                     msgPressEnterInLogIn();
                     break;
