@@ -78,20 +78,48 @@ void Librarian::searchBooks(string title)
             cout << b.title
                  << " | " << b.author
                  << " | " << b.year
-                 << " | " << b.country << endl;
+                 << " | " << b.country
+                 << " | " << (b.isBorrowed ? "Yes" : "No")
+                 << endl;
+
             found = true;
             msgPressEnterInLogIn();
+            break; // stop searching
         }
     }
 
     if (!found)
     {
-        system("cls");
-        cout << red << "No matching book found.\n"
-             << endl;
+        cout << b_red << "No matching book found.\n"
+             << reset;
+        msgPressEnterInLogIn();
     }
-    msgPressEnterInLogIn();
 }
+
+// void Librarian::searchBooks(string title)
+// {
+//     cout << "\n===== Search Result =====\n";
+//     bool found = false;
+
+//     for (auto &b : books)
+//     {
+//         if (b.title == title)
+//         {
+//             cout << b.title
+//                  << " | " << b.author
+//                  << " | " << b.year
+//                  << " | " << b.country
+//                  << " | " << (b.isBorrowed ? "Yes" : "No")
+//                  << endl;
+//             found = true;
+//             msgPressEnterInLogIn();
+//         } else {
+//             cout << b_red << "No matching book found.\n" << reset;
+//             msgPressEnterInLogIn();
+//         }
+//     }
+
+// }
 
 void Librarian::updateBook(int id)
 {
@@ -203,12 +231,13 @@ int Librarian::librarianMenu()
                 {
                     system("cls");
                     string title;
-                    listBooks();
-                    cout << "Enter book id: ";
-                    cin >> title;
+                    cout << "Enter book title: ";
+                    cin.ignore();
+                    getline(cin, title);
                     lib.searchBooks(title);
                     break;
                 }
+
                 case 4:
                 {
                     system("cls");

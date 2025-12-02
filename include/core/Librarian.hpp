@@ -13,7 +13,6 @@ class Librarian
 {
 public:
     Librarian();
-
     int getNextId();
     void importBook(const string& title, const string& author, int year, const string& country) ;
     void listBooks();

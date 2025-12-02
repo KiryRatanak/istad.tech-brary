@@ -14,15 +14,15 @@ User::User() {}
 void User::listBooksInlabrary()
 {
     system("cls");
-
     lib.listBooks();
 }
 
 void User::findBook()
 {
     int option;
-    cout << endl << "\n Find book by:\n";
-    cout << " 1. Author\n2. Title\n3. Year\nChoose: ";
+    cout << endl
+         << "\n Find book by:\n";
+    cout << " 1. Author\n 2. Title\n 3. Year\nChoose: ";
     cin >> option;
     cin.ignore();
 
@@ -39,7 +39,8 @@ void User::findBook()
 void User::findByAuthor()
 {
     string author;
-    cout << endl << " Enter author: ";
+    cout << endl
+         << " Enter author: ";
     getline(cin, author);
 
     bool found = false;
@@ -58,7 +59,8 @@ void User::findByAuthor()
 void User::findByTitle()
 {
     string title;
-    cout << endl << " Enter title: ";
+    cout << endl
+         << " Enter title: ";
     getline(cin, title);
 
     bool found = false;
@@ -77,7 +79,8 @@ void User::findByTitle()
 void User::findByYear()
 {
     int year;
-    cout << endl << " Enter year: ";
+    cout << endl
+         << " Enter year: ";
     cin >> year;
 
     bool found = false;
@@ -107,7 +110,12 @@ void User::borrowBook()
             {
                 b.isBorrowed = true;
 
-                borrowHistory.push_back({b.id, b.title});
+                borrowHistory.push_back({b.id,
+                                         b.title,
+                                         b.author,
+                                         b.year,
+                                         b.country,
+                                         b.isBorrowed});
                 cout << "Book borrowed successfully!\n";
             }
             else
@@ -123,9 +131,22 @@ void User::borrowBook()
 void User::viewBorrowHistory()
 {
     cout << "\n=== BORROW HISTORY ===\n";
+
+    if (borrowHistory.empty())
+    {
+        cout << "No borrow history.\n";
+        return;
+    }
+
     for (auto &h : borrowHistory)
     {
-        cout << h.bookId << " | " << h.title << endl;
+        cout << "ID: " << h.id
+             << " | Title: " << h.title
+             << " | Author: " << h.author
+             << " | Year: " << h.year
+             << " | Country: " << h.country
+             << " | Borrowed: " << (h.isBorrowed ? "Yes" : "No")
+             << endl;
     }
 }
 
@@ -137,7 +158,7 @@ void User::deleteBook()
 
     for (size_t i = 0; i < borrowHistory.size(); i++)
     {
-        if (borrowHistory[i].bookId == id)
+        if (borrowHistory[i].id == id)
         {
 
             for (auto &b : books)
@@ -199,7 +220,6 @@ int User::userMenu()
                     break;
 
                 case 2:
-                    lib.listBooks();
                     findBook();
                     msgPressEnterInLogIn();
                     break;
@@ -216,7 +236,7 @@ int User::userMenu()
                     break;
 
                 case 5:
-                    lib.listBooks();
+                    viewBorrowHistory();
                     deleteBook();
                     msgPressEnterInLogIn();
                     break;
