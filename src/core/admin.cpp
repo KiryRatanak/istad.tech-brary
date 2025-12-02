@@ -14,59 +14,48 @@ void Admin::createLibrarian()
 {
     LibrarianManagement lib;
 
-    cout << "Enter username: ";
+    cout << endl << " Enter username: ";
     cin >> lib.username;
 
-    cout << "Enter gender: ";
-    cin >> lib.gender;
-
-    cout << "Enter phone number: ";
-    cin >> lib.phone;
-
-    cout << "Enter password: ";
+    cout << " Enter password: ";
     cin >> lib.password;
-
-    cout << "Enter city: ";
-    cin >> lib.address;
 
     librarians.push_back(lib);
 
-    cout << "\nLibrarian created successfully!\n";
+    cout << b_green << "\n Librarian created successfully.\n" << reset ;
+    msgPressEnterInLogIn();
 }
 
 void Admin::updateLibrarian()
 {
+    
     string username;
-    cout << "Enter username to update: ";
+    cout << " Enter username to update: ";
     cin >> username;
 
     for (auto &lib : librarians)
     {
         if (lib.username == username)
         {
-            cout << "New gender: ";
-            cin >> lib.gender;
+            cout << " New gender: ";
+            cin >> lib.username;
 
-            cout << "New phone: ";
-            cin >> lib.phone;
-
-            cout << "New password: ";
+            cout << " New password: ";
             cin >> lib.password;
 
-            cout << "New city: ";
-            cin >> lib.address;
-
-            cout << "Updated successfully!\n";
+            cout << b_green << " Updated successfully!\n" << reset ;
+            msgPressEnterInLogIn();
             return;
         }
     }
-    cout << "Librarian not found!\n";
+    cout << red << " Librarian not found!\n" << reset ;
+    msgPressEnterInLogIn();
 }
 
 void Admin::deleteLibrarian()
 {
     string username;
-    cout << "Enter username to delete: ";
+    cout << " Enter username to delete: ";
     cin >> username;
 
     for (size_t i = 0; i < librarians.size(); i++)
@@ -74,11 +63,13 @@ void Admin::deleteLibrarian()
         if (librarians[i].username == username)
         {
             librarians.erase(librarians.begin() + i);
-            cout << "Deleted successfully!\n";
+            cout << b_green << " Deleted successfully!\n" << reset  ;
+            msgPressEnterInLogIn();
             return;
         }
     }
-    cout << "Librarian not found!\n";
+    cout << red << " Librarian not found!\n" << reset ;
+    msgPressEnterInLogIn();
 }
 
 void Admin::showLibrarians()
@@ -91,7 +82,8 @@ void Admin::showLibrarians()
 
     if (librarians.empty())
     {
-        cout << "No librarians found.\n";
+        cout << b_red << "No librarians found.\n" << reset ;
+        msgPressEnterInLogIn();
         return;
     }
 }
@@ -102,14 +94,7 @@ int Admin::manageLibrarian()
 
     do
     {
-        cout << "\n===== Manage Librarians =====\n";
-        cout << "1. Create Librarian\n";
-        cout << "2. Update Librarian\n";
-        cout << "3. Delete Librarian\n";
-        cout << "4. Show Librarians\n";
-        cout << "5. Return back\n";
-        cout << "0. Return\n";
-        cout << "Select option: ";
+        displayManageLibrarian();
 
         option = validatedManageLibrarian();
 
@@ -138,7 +123,7 @@ int Admin::manageLibrarian()
 
             break;
         default:
-            cout << "Invalid option!\n";
+            cout << red << "Invalid option!\n" << reset ;
         }
 
     } while (option != 0);
@@ -148,7 +133,7 @@ int Admin::manageLibrarian()
 
 int Admin::amount()
 {
-    cout << "amount successfully" << endl;
+    cout << endl << " amount successfully" << endl;
     msgPressEnterInLogIn();
     return -1;
 }

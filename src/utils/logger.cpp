@@ -98,29 +98,29 @@ void msgPressEnterInLogIn()
 
 void msgWithoutNumberInLogIn()
 {
-    cout << red
+    cout << endl << red
          << "⚠️  invalid input..! please enter a number... "
          << reset << endl;
-    msgPressEnter();
+    msgPressEnterInLogIn();
 }
 
 void msgExitProgramInLogIn()
 {
-    cout << green
+    cout << endl << green
          << "👋 exit program successfully."
          << endl
          << "🙏 thank you....."
          << reset << endl;
-    msgPressEnter();
+    msgPressEnterInLogIn();
     exit(0);
 }
 
 void msgWrongOptionInLogIn()
 {
-    cout << red
+    cout << endl << red
          << "⚠️  please put 0 to 4... "
          << reset << endl;
-    msgPressEnter();
+    msgPressEnterInLogIn();
 }
 
 void msgSuccessInLogIn()
@@ -132,7 +132,7 @@ void msgSuccessInLogIn()
 
 int msgReturnBackInLogIn()
 {
-    cout << green
+    cout << endl << green
          << "✅ Returning to header menu..."
          << reset << endl;
     msgPressEnterInLogIn();

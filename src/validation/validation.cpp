@@ -33,7 +33,7 @@ bool confirmExitInLogIn(int maxAttempts = 3)
 
     while (attempts < maxAttempts)
     {
-        cout << "Are you sure you want to exit? (y/n): ";
+        cout << endl << "Are you sure you want to exit? (y/n): ";
         cin >> input;
 
         if (input == "y" || input == "Y")
@@ -144,6 +144,8 @@ int validatedAdminLogIn()
 
     while (true)
     {
+        cout << "\033[2A";
+        cout << "\033[22C";
         cin >> option;
 
         if (cin.fail())
@@ -223,6 +225,8 @@ int validatedManageLibrarian()
 
     while (true)
     {
+        cout << "\033[2A";
+        cout << "\033[22C";
         cin >> option;
 
         if (cin.fail())

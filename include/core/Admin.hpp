@@ -6,10 +6,7 @@ using namespace std;
 
 struct LibrarianManagement {
     string username;
-    string gender;
-    string phone;
     string password;
-    string address;
 };
 
 class Admin {

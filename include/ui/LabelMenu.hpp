@@ -21,3 +21,4 @@ void displayAdminMenu();
 void displayRequestAccount();
 void displayAboutUs();
 void displayListBooks();
+void displayManageLibrarian();

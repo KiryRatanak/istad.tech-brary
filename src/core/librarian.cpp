@@ -7,18 +7,16 @@
 #include "book/Book.hpp"
 #include "security/Password.hpp"
 
+// string filename = "../../studentdata.xlsx";
+// vector<Student> students = readExcelToVector(filename);
 
-    // string filename = "../../studentdata.xlsx";
-    // vector<Student> students = readExcelToVector(filename);
-
-    // vector<string> mainMenu = {
-    //     "Add New Records",
-    //     "Delete the Record",
-    //     "Update the record",
-    //     "Show all records",
-    //     "Exit"
-    // };
-
+// vector<string> mainMenu = {
+//     "Add New Records",
+//     "Delete the Record",
+//     "Update the record",
+//     "Show all records",
+//     "Exit"
+// };
 
 using namespace std;
 
@@ -48,7 +46,7 @@ void Librarian::listBooks()
 
     if (books.empty())
     {
-        system ("cls");
+        system("cls");
         cout << b_red << "No books available.\n"
              << reset;
         msgPressEnterInLogIn();
@@ -66,7 +64,6 @@ void Librarian::listBooks()
     }
 
     cout << b_blue << " ╚═════════╩════════════════════════════════╩════════════════════════════════╩═════════╩════════════════════════════════╝" << reset << endl;
-    
 }
 
 void Librarian::searchBooks(string title)
@@ -83,14 +80,17 @@ void Librarian::searchBooks(string title)
                  << " | " << b.year
                  << " | " << b.country << endl;
             found = true;
+            msgPressEnterInLogIn();
         }
     }
 
     if (!found)
     {
         system("cls");
-        cout << red << "No matching book found.\n" << endl;
+        cout << red << "No matching book found.\n"
+             << endl;
     }
+    msgPressEnterInLogIn();
 }
 
 void Librarian::updateBook(int id)
@@ -108,10 +108,12 @@ void Librarian::updateBook(int id)
             cout << "Enter new country: ";
             cin >> b.country;
             cout << "Book updated successfully!\n";
+            msgPressEnterInLogIn();
             return;
         }
     }
     cout << "Book with title " << id << " not found.\n";
+    msgPressEnterInLogIn();
 }
 
 void Librarian::deleteBook(int id)
@@ -123,10 +125,12 @@ void Librarian::deleteBook(int id)
     {
         books.erase(it, books.end());
         cout << "Book deleted successfully!\n";
+        msgPressEnterInLogIn();
     }
     else
     {
         cout << "Book with title " << id << " not found.\n";
+        msgExitProgramInLogIn();
     }
 }
 
@@ -162,7 +166,7 @@ int Librarian::librarianMenu()
 
                 option = validatedManageLibrarian();
 
-                if (option == 7)
+                if (option == 6)
                 {
                     msgReturnBackInLogIn();
                     return -1;
@@ -182,6 +186,7 @@ int Librarian::librarianMenu()
                     system("cls");
                     string title, author, country;
                     int year;
+                    listBooks();
                     cout << "Enter book title: ";
                     cin >> title;
                     cout << "Enter book author: ";
@@ -198,6 +203,7 @@ int Librarian::librarianMenu()
                 {
                     system("cls");
                     string title;
+                    listBooks();
                     cout << "Enter book id: ";
                     cin >> title;
                     lib.searchBooks(title);
