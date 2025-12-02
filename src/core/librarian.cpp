@@ -7,17 +7,6 @@
 #include "book/Book.hpp"
 #include "security/Password.hpp"
 
-// string filename = "../../studentdata.xlsx";
-// vector<Student> students = readExcelToVector(filename);
-
-// vector<string> mainMenu = {
-//     "Add New Records",
-//     "Delete the Record",
-//     "Update the record",
-//     "Show all records",
-//     "Exit"
-// };
-
 using namespace std;
 
 Librarian lib;
@@ -95,31 +84,6 @@ void Librarian::searchBooks(string title)
         msgPressEnterInLogIn();
     }
 }
-
-// void Librarian::searchBooks(string title)
-// {
-//     cout << "\n===== Search Result =====\n";
-//     bool found = false;
-
-//     for (auto &b : books)
-//     {
-//         if (b.title == title)
-//         {
-//             cout << b.title
-//                  << " | " << b.author
-//                  << " | " << b.year
-//                  << " | " << b.country
-//                  << " | " << (b.isBorrowed ? "Yes" : "No")
-//                  << endl;
-//             found = true;
-//             msgPressEnterInLogIn();
-//         } else {
-//             cout << b_red << "No matching book found.\n" << reset;
-//             msgPressEnterInLogIn();
-//         }
-//     }
-
-// }
 
 void Librarian::updateBook(int id)
 {
@@ -229,7 +193,6 @@ int Librarian::librarianMenu()
 
                 case 3:
                 {
-                    system("cls");
                     string title;
                     cout << "Enter book title: ";
                     cin.ignore();
