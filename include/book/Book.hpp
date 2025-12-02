@@ -1,19 +1,20 @@
-#pragma once 
-
+#pragma once
 #include <iostream>
 #include <string>
 #include <string>
 #include <vector>
 
+#include "core/User.hpp"
+
 using namespace std;
 
 struct Book {
-    int    id ;
     string title;
     string author;
     int year;
     string country;
-    bool isBorrowed;
 };
 
-extern vector<Book> books; 
+struct History {
+    string title;
+};

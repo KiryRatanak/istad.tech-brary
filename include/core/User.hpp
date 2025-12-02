@@ -1,27 +1,28 @@
 #pragma once
-#include <iostream>
+#include <vector>
 #include <string>
 #include <vector>
-#include "book/Book.hpp"
-#include "core/History.hpp"
 
 class User {
+
 private:
-    std::vector<Book>* books;            // points to main library list
-    std::vector<History> borrowHistory;  // list of borrowed books
+    // std::vector<Book>* books;
+    // std::vector<History> borrowHistory;
 
 public:
-    User();  // if you need default constructor
+    // User(std::vector<Book>* libraryBooks);
 
-    int userMenu();
+    void userMenu();
+    // void listAllBooks();
+    // void findBook();
+    // void findByAuthor();
+    // void findByTitle();
+    // void findByYear();
 
-    void listBooksInlabrary();
-    void findBook();
-    void findByAuthor();
-    void findByTitle();
-    void findByYear();
+    // void borrowBook();
+    // void viewBorrowHistory();
+    // void deleteBook();    
+    // delete from library list
 
-    void borrowBook();
-    void viewBorrowHistory();
-    void deleteBook();
+    // void exitMenu();
 };
