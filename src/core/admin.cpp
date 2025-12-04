@@ -22,7 +22,7 @@ void Admin::createLibrarian()
 
     librarians.push_back(lib);
 
-    cout << b_green << "\n Librarian created successfully.\n" << reset ;
+    cout << BOLD_GREEN << "\n Librarian created successfully.\n" << RESET ;
     msgPressEnterInLogIn();
 }
 
@@ -43,12 +43,12 @@ void Admin::updateLibrarian()
             cout << " New password: ";
             cin >> lib.password;
 
-            cout << b_green << " Updated successfully!\n" << reset ;
+            cout << BOLD_GREEN << " Updated successfully!\n" << RESET ;
             msgPressEnterInLogIn();
             return;
         }
     }
-    cout << red << " Librarian not found!\n" << reset ;
+    cout << RED << " Librarian not found!\n" << RESET ;
     msgPressEnterInLogIn();
 }
 
@@ -63,12 +63,12 @@ void Admin::deleteLibrarian()
         if (librarians[i].username == username)
         {
             librarians.erase(librarians.begin() + i);
-            cout << b_green << " Deleted successfully!\n" << reset  ;
+            cout << BOLD_GREEN << " Deleted successfully!\n" << RESET  ;
             msgPressEnterInLogIn();
             return;
         }
     }
-    cout << red << " Librarian not found!\n" << reset ;
+    cout << RED << " Librarian not found!\n" << RESET ;
     msgPressEnterInLogIn();
 }
 
@@ -82,7 +82,7 @@ void Admin::showLibrarians()
 
     if (librarians.empty())
     {
-        cout << b_red << "No librarians found.\n" << reset ;
+        cout << BOLD_RED << "No librarians found.\n" << RESET ;
         msgPressEnterInLogIn();
         return;
     }
@@ -123,7 +123,7 @@ int Admin::manageLibrarian()
 
             break;
         default:
-            cout << red << "Invalid option!\n" << reset ;
+            cout << RED << "Invalid option!\n" << RESET ;
         }
 
     } while (option != 0);
@@ -198,12 +198,12 @@ int Admin::adminMenu()
             cout << endl
                  << endl
                  << endl
-                 << b_red
-                 << "Invalid credentials. Attempts left: " << attempts << reset << endl;
+                 << BOLD_RED
+                 << "Invalid cREDentials. Attempts left: " << attempts << RESET << endl;
             if (attempts == 0)
             {
                 cout << endl
-                     << b_red << "Too many failed attempts. You are not Admin 🫵. " << reset << endl;
+                     << BOLD_RED << "Too many failed attempts. You are not Admin 🫵. " << RESET << endl;
                 msgPressEnterInLogIn();
                 continue;
             }

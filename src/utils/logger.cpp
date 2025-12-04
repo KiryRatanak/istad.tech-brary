@@ -6,135 +6,135 @@
 
 int msgReturnBack()
 {
-    cout << green
+    cout << GREEN
          << "                                                      ✅ Returning to header menu..."
-         << reset << endl;
+         << RESET << endl;
     msgPressEnter();
     return -1;
 }
 
 void msgPressEnter()
 {
-    cout << yellow
+    cout << YELLOW
          << "                                                      👉 press enter to continue... "
-         << reset;
+         << RESET;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }
 
 void msgTryAgain()
 {
-    cout << red
+    cout << RED
          << "                                                      ⚠️  please try again... "
-         << reset << endl;
+         << RESET << endl;
 }
 
 void msgSuccess()
 {
-    cout << green
+    cout << GREEN
          << "                                                      ✅ successfully. "
-         << reset << endl;
+         << RESET << endl;
 }
 
 void msgUnsuccess()
 {
-    cout << red
+    cout << RED
          << "                                                      ❌ unsuccessfully..! "
-         << reset << endl;
+         << RESET << endl;
 }
 
 void msgWrongOptionHeader()
 {
-    cout << red
+    cout << RED
          << "                                                      ⚠️  please put 0 to 3... "
-         << reset << endl;
+         << RESET << endl;
     msgPressEnter();
 }
 
 void msgWrongOptionLogIn()
 {
-    cout << red
+    cout << RED
          << "                                                      ⚠️  please put 0 to 4... "
-         << reset << endl;
+         << RESET << endl;
     msgPressEnter();
 }
 
 void msgExitProgram()
 {
-    cout << green
+    cout << GREEN
          << "                                                      👋 exit program successfully."
          << endl
          << "                                                      🙏 thank you....."
-         << reset << endl;
+         << RESET << endl;
     msgPressEnter();
     exit(0);
 }
 
 void msgWithoutNumber()
 {
-    cout << red
+    cout << RED
          << "                                                      ⚠️  invalid input..! please enter a number... "
-         << reset << endl;
+         << RESET << endl;
     msgPressEnter();
 }
 
 void msgNotAdmin()
 {
-    cout << red
+    cout << RED
          << "                                                      ⚠️  invalid input..! please enter a number... "
-         << reset << endl;
+         << RESET << endl;
     msgPressEnter();
 }
 
 void msgPressEnterInLogIn()
 {
     cout << endl
-         << yellow
+         << YELLOW
          << "👉 press enter to continue... "
-         << reset;
+         << RESET;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }
 
 void msgWithoutNumberInLogIn()
 {
-    cout << endl << red
+    cout << endl << RED
          << "⚠️  invalid input..! please enter a number... "
-         << reset << endl;
+         << RESET << endl;
     msgPressEnterInLogIn();
 }
 
 void msgExitProgramInLogIn()
 {
-    cout << endl << green
+    cout << endl << GREEN
          << "👋 exit program successfully."
          << endl
          << "🙏 thank you....."
-         << reset << endl;
+         << RESET << endl;
     msgPressEnterInLogIn();
     exit(0);
 }
 
 void msgWrongOptionInLogIn()
 {
-    cout << endl << red
+    cout << endl << RED
          << "⚠️  please put 0 to 4... "
-         << reset << endl;
+         << RESET << endl;
     msgPressEnterInLogIn();
 }
 
 void msgSuccessInLogIn()
 {
-    cout << green
+    cout << GREEN
          << "✅ successfully. "
-         << reset << endl;
+         << RESET << endl;
 }
 
 int msgReturnBackInLogIn()
 {
-    cout << endl << green
+    cout << endl << GREEN
          << "✅ Returning to header menu..."
-         << reset << endl;
+         << RESET << endl;
     msgPressEnterInLogIn();
     return -1;
 }

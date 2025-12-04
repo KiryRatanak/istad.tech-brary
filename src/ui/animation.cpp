@@ -27,12 +27,12 @@ void animationLoading()
     cout << "\r\033[62C" ;
     for (int i = 0; i <= 30; i++)
     {
-        cout << "\r\033[63C" << b_red << string(i, '-') << "/" << reset;
+        cout << "\r\033[63C" << BOLD_RED << string(i, '-') << "/" << RESET;
         this_thread::sleep_for(chrono::milliseconds(50));
     }
     for (int i = 0; i <= 30; i++)
     {
-        cout << "\r\033[63C" << b_green << string(i, '#') << b_green << "/" << reset;
+        cout << "\r\033[63C" << BOLD_GREEN << string(i, '#') << BOLD_GREEN << "/" << RESET;
         this_thread::sleep_for(chrono::milliseconds(50));
     }
 

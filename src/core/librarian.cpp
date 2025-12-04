@@ -15,15 +15,15 @@ Librarian::Librarian() {};
 
 int Librarian::getNextId()
 {
-    return books.size() + 1; // returns the next available ID
+    return static_cast<int>(books.size()) + 1; // returns the next available ID
 }
 
 void Librarian::importBook(const string &title, const string &author, int year, const string &country)
 {
     int id = getNextId();
     books.push_back({id, title, author, year, country});
-    cout << b_green << "Book imported successfully!\n"
-         << reset;
+    cout << BOLD_GREEN << "Book imported successfully!\n"
+         << RESET;
     msgPressEnterInLogIn();
 }
 
@@ -36,23 +36,23 @@ void Librarian::listBooks()
     if (books.empty())
     {
         system("cls");
-        cout << b_red << "No books available.\n"
-             << reset;
+        cout << BOLD_RED << "No books available.\n"
+             << RESET;
         msgPressEnterInLogIn();
         return;
     }
 
     for (auto &b : books)
     {
-        cout << left << b_blue << " ║ " << reset << setw(7) << b.id
-             << b_blue << " ║ " << reset << setw(30) << b.title
-             << b_blue << " ║ " << reset << setw(30) << b.author
-             << b_blue << " ║ " << reset << setw(7) << b.year
-             << b_blue << " ║ " << reset << setw(30) << b.country
-             << b_blue << " ║ " << reset << endl;
+        cout << left << BOLD_BLUE << " ║ " << RESET << setw(7) << b.id
+             << BOLD_BLUE << " ║ " << RESET << setw(30) << b.title
+             << BOLD_BLUE << " ║ " << RESET << setw(30) << b.author
+             << BOLD_BLUE << " ║ " << RESET << setw(7) << b.year
+             << BOLD_BLUE << " ║ " << RESET << setw(30) << b.country
+             << BOLD_BLUE << " ║ " << RESET << endl;
     }
 
-    cout << b_blue << " ╚═════════╩════════════════════════════════╩════════════════════════════════╩═════════╩════════════════════════════════╝" << reset << endl;
+    cout << BOLD_BLUE << " ╚═════════╩════════════════════════════════╩════════════════════════════════╩═════════╩════════════════════════════════╝" << RESET << endl;
 }
 
 void Librarian::searchBooks(string title)
@@ -79,8 +79,8 @@ void Librarian::searchBooks(string title)
 
     if (!found)
     {
-        cout << b_red << "No matching book found.\n"
-             << reset;
+        cout << BOLD_RED << "No matching book found.\n"
+             << RESET;
         msgPressEnterInLogIn();
     }
 }
@@ -242,12 +242,12 @@ int Librarian::librarianMenu()
             cout << endl
                  << endl
                  << endl
-                 << b_red
-                 << "Invalid credentials. Attempts left: " << attempts << reset << endl;
+                 << BOLD_RED
+                 << "Invalid credentials. Attempts left: " << attempts << RESET << endl;
             if (attempts == 0)
             {
                 cout << endl
-                     << b_red << "Too many failed attempts. You are not Librarian 🫵." << reset << endl;
+                     << BOLD_RED << "Too many failed attempts. You are not Librarian 🫵." << RESET << endl;
                 msgPressEnterInLogIn();
                 continue;
             }

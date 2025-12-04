@@ -1,8 +1,8 @@
-#include "ExcelUtils.hpp"
+#include "core/ExcelUtils.hpp"
 #include "xlnt/xlnt.hpp"
 #include <iostream>
 
-void writeExcel(const string &filename, vector<Account> &account)
+void writeAccountsExcel(const string &filename, vector<Account> &accounts)
 {
     xlnt::workbook wb;
     auto ws = wb.active_sheet();
@@ -12,7 +12,7 @@ void writeExcel(const string &filename, vector<Account> &account)
     ws.cell("B1").value("Password");
 
     int row = 2;
-    for (auto &acc : account)
+    for (auto &acc : accounts)
     {
         ws.cell("A" + to_string(row)).value(acc.getUsername());
         ws.cell("B" + to_string(row)).value(acc.getPassword());
@@ -23,7 +23,7 @@ void writeExcel(const string &filename, vector<Account> &account)
     cout << "Successfully saved student records ☁️!" << endl;
 }
 
-vector<Account> readExcelToVector(const string &filename)
+vector<Account> readAccountsExcelToVector(const string &filename)
 {
     vector<Account> account;
     xlnt::workbook wb;
@@ -51,7 +51,7 @@ vector<Account> readExcelToVector(const string &filename)
     return account;
 }
 
-void readExcel(const string &filename)
+void readAccountsExcel(const string &filename)
 {
     xlnt::workbook wb;
     wb.load(filename);
@@ -65,3 +65,4 @@ void readExcel(const string &filename)
         }
         cout << endl;
     }
+}

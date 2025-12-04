@@ -253,12 +253,12 @@ int User::userMenu()
             cout << endl
                  << endl
                  << endl
-                 << b_red
-                 << "Invalid credentials. Attempts left: " << attempts << reset << endl;
+                 << BOLD_RED
+                 << "Invalid credentials. Attempts left: " << attempts << RESET << endl;
             if (attempts == 0)
             {
                 cout << endl
-                     << b_red << "Too many failed attempts. Access denied." << reset << endl;
+                     << BOLD_RED << "Too many failed attempts. Access denied." << RESET << endl;
                 msgPressEnterInLogIn();
                 continue;
             }
