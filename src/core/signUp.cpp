@@ -1,6 +1,5 @@
 #include "core/SignUp.hpp"
 #include "core/ExcelUtils.hpp"
-// ======================= Account Class =========================
 
 Account::Account(const string &username, const string &password)
     : username(username), password(password) {}
